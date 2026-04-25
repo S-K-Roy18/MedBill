@@ -150,6 +150,33 @@ nav a:hover, nav a.active { color: #fff; }
 }
 .delete-btn:hover { background: rgba(239,68,68,0.2); }
 
+/* ─── Stock Badges ────────────────────────────────────────── */
+.qty-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.qty-cell strong { font-size: 15px; }
+
+.stock-badge {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.stock-badge.warning {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--accent-yellow);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+.stock-badge.critical {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--accent-red);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
 /* ─── Footer ───────────────────────────────────────────────── */
 footer {
   background: var(--header-bg); color: rgba(255,255,255,0.4);
@@ -194,6 +221,9 @@ body.dark .popup-content input {
 }
 body.dark .popup-content input:focus { background: #141930; }
 body.dark footer { background: #080a12; }
+ 
+body.dark .stock-badge.warning { background: rgba(245, 158, 11, 0.18); border-color: rgba(245, 158, 11, 0.4); }
+body.dark .stock-badge.critical { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.4); }
 
 
 /* ─── Responsive ───────────────────────────────────────────── */

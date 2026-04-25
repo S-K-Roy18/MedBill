@@ -62,11 +62,23 @@ function renderTable(products) {
   }
 
   products.forEach((item) => {
+    let stockStatus = '';
+    if (item.quantity <= 3) {
+      stockStatus = '<span class="stock-badge critical">Critical</span>';
+    } else if (item.quantity <= 10) {
+      stockStatus = '<span class="stock-badge warning">Low Stock</span>';
+    }
+
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${item.name}</td>
       <td>${item.sku}</td>
-      <td>${item.quantity}</td>
+      <td>
+        <div class="qty-cell">
+          <strong>${item.quantity}</strong>
+          ${stockStatus}
+        </div>
+      </td>
       <td>₹${item.mrp.toFixed(2)}</td>
       <td>
         <button class="action-btn edit-btn" onclick="editItem('${item._id}')">Edit</button>
