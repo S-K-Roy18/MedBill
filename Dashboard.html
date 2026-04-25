@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dashboard | MBMS</title>
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="Dashboard.css">
+	<script src="scripts/theme.js"></script>
+</head>
+<body>
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<div class="logo">
+				<i class='bx bx-plus-medical' style="font-size:26px; color:#4f8ef7;"></i>
+				<span>MBMS</span>
+			</div>
+		</a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="Dashboard.html">
+					<i class='bx bxs-dashboard'></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="Inventory.html">
+					<i class='bx bxs-package'></i>
+					<span class="text">Inventory</span>
+				</a>
+			</li>
+			<li>
+				<a href="Billing.html">
+					<i class='bx bxs-receipt'></i>
+					<span class="text">Billing</span>
+				</a>
+			</li>
+			<li>
+				<a href="Saleshistory.html">
+					<i class='bx bxs-bar-chart-alt-2'></i>
+					<span class="text">Sales History</span>
+				</a>
+			</li>
+			<li>
+				<a href="Analytic.html">
+					<i class='bx bxs-doughnut-chart'></i>
+					<span class="text">Analytics</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="Setting.html">
+					<i class='bx bxs-cog'></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="Login.HTML" class="logout" id="logoutBtn">
+					<i class='bx bxs-log-out-circle'></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu'></i>
+			<span class="nav-link" id="navGreeting">Dashboard</span>
+			<form action="#" style="flex:1; max-width:360px;">
+				<div class="form-input">
+					<input type="search" placeholder="Search medicines, bills...">
+					<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="profile">
+				<div class="avatar-circle" id="avatarCircle">A</div>
+			</a>
+		</nav>
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Dashboard</h1>
+					<ul class="breadcrumb">
+						<li><a href="#">Home</a></li>
+						<li><i class='bx bx-chevron-right'></i></li>
+						<li><a class="active" href="#">Dashboard</a></li>
+					</ul>
+				</div>
+				<a href="Billing.html" class="btn-download">
+					<i class='bx bxs-receipt'></i>
+					<span class="text">New Bill</span>
+				</a>
+			</div>
+
+			<!-- STAT CARDS -->
+			<ul class="box-info">
+				<li>
+					<i class='bx bxs-receipt'></i>
+					<span class="text">
+						<h3 id="statOrders">—</h3>
+						<p>Total Bills</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-dollar-circle'></i>
+					<span class="text">
+						<h3 id="statRevenue">—</h3>
+						<p>Total Revenue</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-package'></i>
+					<span class="text">
+						<h3 id="statProducts">—</h3>
+						<p>Products</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-error-circle'></i>
+					<span class="text">
+						<h3 id="statLowStock">—</h3>
+						<p>Low Stock</p>
+					</span>
+				</li>
+			</ul>
+
+			<!-- TABLE DATA -->
+			<div class="table-data">
+				<!-- Recent Orders -->
+				<div class="order">
+					<div class="head">
+						<h3>Recent Bills</h3>
+						<a href="Saleshistory.html" class="view-all-link">View All <i class='bx bx-right-arrow-alt'></i></a>
+					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>Customer</th>
+								<th>Bill No.</th>
+								<th>Date</th>
+								<th>Amount</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody id="recentBillsBody">
+							<tr><td colspan="5" class="loading-cell">Loading...</td></tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Best Sellers -->
+				<div class="todo">
+					<div class="head">
+						<h3>Best Sellers</h3>
+						<a href="Saleshistory.html" class="view-all-link">Details <i class='bx bx-right-arrow-alt'></i></a>
+					</div>
+					<ul class="todo-list" id="bestSellersList">
+						<li class="loading-cell" style="background:transparent;border:none;">Loading...</li>
+					</ul>
+
+					<!-- Low Stock Alerts -->
+					<div class="head" style="margin-top:24px;">
+						<h3>⚠️ Low Stock</h3>
+					</div>
+					<ul class="todo-list" id="lowStockList">
+						<li class="loading-cell" style="background:transparent;border:none;">Loading...</li>
+					</ul>
+				</div>
+			</div>
+		</main>
+	</section>
+
+	<script src="scripts/Dashboard.js"></script>
+	<script>
+		const API_URL = 'http://localhost:5000/api';
+
+		function getToken() { return localStorage.getItem('mbmsToken'); }
+
+		// Show username initial in avatar
+		const user = JSON.parse(localStorage.getItem('mbmsUser') || '{}');
+		if (user.username) {
+			document.getElementById('avatarCircle').textContent = user.username[0].toUpperCase();
+			document.getElementById('navGreeting').textContent = 'Welcome, ' + user.username;
+		}
+
+		// Logout
+		document.getElementById('logoutBtn').addEventListener('click', (e) => {
+			e.preventDefault();
+			localStorage.removeItem('mbmsToken');
+			localStorage.removeItem('mbmsUser');
+			window.location.href = 'Login.HTML';
+		});
+
+		async function loadDashboard() {
+			try {
+				const res = await fetch(`${API_URL}/dashboard/stats`, {
+					headers: { Authorization: `Bearer ${getToken()}` }
+				});
+				const json = await res.json();
+				if (!json.success) throw new Error(json.message);
+
+				const d = json.data;
+
+				// Stat cards
+				document.getElementById('statOrders').textContent = d.totalOrders;
+				document.getElementById('statRevenue').textContent = '₹' + (d.totalRevenue || 0).toFixed(2);
+				document.getElementById('statProducts').textContent = d.totalProducts;
+				document.getElementById('statLowStock').textContent = d.lowStockProducts.length;
+
+				// Recent bills table
+				const tbody = document.getElementById('recentBillsBody');
+				if (d.recentBills.length === 0) {
+					tbody.innerHTML = '<tr><td colspan="5" class="loading-cell">No bills yet. <a href="Billing.html">Create one!</a></td></tr>';
+				} else {
+					tbody.innerHTML = d.recentBills.map(b => `
+						<tr>
+							<td><p>${b.customerName}</p></td>
+							<td>${b.billNumber}</td>
+							<td>${new Date(b.date).toLocaleDateString('en-IN')}</td>
+							<td><strong>₹${b.totalAmount.toFixed(2)}</strong></td>
+							<td><span class="status completed">Paid</span></td>
+						</tr>
+					`).join('');
+				}
+
+				// Best sellers list
+				const bsList = document.getElementById('bestSellersList');
+				if (d.bestSellers.length === 0) {
+					bsList.innerHTML = '<li style="background:transparent;border:none;color:#888">No sales data yet</li>';
+				} else {
+					bsList.innerHTML = d.bestSellers.map((item, i) => `
+						<li class="completed">
+							<span class="rank">#${i+1}</span>
+							<p>${item._id}</p>
+							<span class="sold-badge">${item.totalSold} sold</span>
+						</li>
+					`).join('');
+				}
+
+				// Low stock alerts
+				const lsList = document.getElementById('lowStockList');
+				if (d.lowStockProducts.length === 0) {
+					lsList.innerHTML = '<li style="background:transparent;border:none;color:#27ae60">✅ All items well stocked!</li>';
+				} else {
+					lsList.innerHTML = d.lowStockProducts.map(p => `
+						<li class="not-completed">
+							<p>${p.name}</p>
+							<span class="sold-badge low">${p.quantity} left</span>
+						</li>
+					`).join('');
+				}
+
+			} catch (err) {
+				console.error('Dashboard load failed:', err.message);
+				document.getElementById('statOrders').textContent = 'N/A';
+				document.getElementById('statRevenue').textContent = 'N/A';
+				document.getElementById('statProducts').textContent = 'N/A';
+				document.getElementById('statLowStock').textContent = 'N/A';
+				document.getElementById('recentBillsBody').innerHTML =
+					'<tr><td colspan="5" class="loading-cell" style="color:red">Backend offline. Run npm run dev in backend/</td></tr>';
+			}
+		}
+
+		loadDashboard();
+	</script>
+</body>
+</html>

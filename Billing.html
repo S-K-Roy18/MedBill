@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Billing | MBMS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="Billing.css" />
+  <script src="scripts/theme.js"></script>
+  <style>
+    /* ═══════════════════════════════════════════════
+       PRINT STYLES — only the receipt prints
+    ═══════════════════════════════════════════════ */
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      header, footer, .billing-left, .bill-actions, .no-print { display: none !important; }
+      body { background: #fff !important; margin: 0; }
+      .billing-section { display: block; padding: 0; }
+      .billing-right {
+        width: 100% !important;
+        max-width: 80mm !important;   /* thermal printer width */
+        margin: 0 auto;
+        background: #fff !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        color: #000 !important;
+      }
+      .receipt { padding: 6px 10px !important; }
+      .receipt-shop-name { font-size: 15px !important; }
+      .receipt * { color: #000 !important; border-color: #000 !important; }
+      .receipt-table th,
+      .receipt-table td { font-size: 10px !important; padding: 3px 4px !important; }
+      .receipt-paid-stamp { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── HEADER / NAVBAR ─────────────────────────────────── -->
+  <header class="header">
+    <div class="container navbar-content">
+      <div class="logo">
+        <img src="Images\ChatGPT Image Nov 13, 2025, 10_12_37 PM.png" alt="MBMS" style="height:30px;">
+        <span>Medicine Billing &amp; Management System</span>
+      </div>
+      <nav class="nav-menu" id="navMenu">
+        <ul>
+          <li><a href="Dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+          <li><a href="Inventory.html"><i class="fas fa-boxes"></i> Inventory</a></li>
+          <li><a href="Saleshistory.html"><i class="fas fa-history"></i> Sales</a></li>
+          <li class="dropdown">
+            <a href="#" class="profile-icon" id="profileDropdownToggle">
+              <i class="fas fa-user-circle"></i>
+            </a>
+            <div class="dropdown-content">
+              <a href="Login.HTML"><i class="fas fa-sign-in-alt"></i> Login</a>
+              <a href="#" id="headerLogout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
+        <i class="theme-icon fas fa-moon"></i>
+      </button>
+      <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <!-- ─── MAIN BILLING SECTION ────────────────────────────── -->
+  <section class="billing-section">
+
+    <!-- ════ LEFT: INPUT FORM ════ -->
+    <div class="billing-left">
+      <div class="form-card">
+        <div class="form-card-header">
+          <i class="fas fa-file-medical"></i>
+          <div>
+            <h2>New Bill</h2>
+            <span id="currentDate" class="date-badge"></span>
+          </div>
+        </div>
+
+        <!-- Customer Info -->
+        <div class="section-label">Customer Information</div>
+        <div class="customer-info">
+          <div class="form-group">
+            <label for="patientName"><i class="fas fa-user"></i> Patient Name</label>
+            <input type="text" id="patientName" placeholder="Enter patient name" autocomplete="off"/>
+          </div>
+          <div class="form-group">
+            <label for="patientPhone"><i class="fas fa-phone"></i> Phone Number</label>
+            <input type="text" id="patientPhone" placeholder="10-digit mobile number"/>
+          </div>
+          <div class="form-group">
+            <label for="doctorName"><i class="fas fa-user-md"></i> Doctor Name</label>
+            <input type="text" id="doctorName" placeholder="Dr. Prescribed by (optional)"/>
+          </div>
+        </div>
+
+        <!-- Product Row Form -->
+        <div class="section-label">Add Medicine</div>
+        <form id="billingForm">
+          <div class="form-group">
+            <label for="productName"><i class="fas fa-pills"></i> Medicine Name</label>
+            <input type="text" id="productName" list="productSuggestions"
+                   placeholder="Search medicine..." required autocomplete="off"/>
+            <datalist id="productSuggestions"></datalist>
+          </div>
+
+          <div class="row-3">
+            <div class="form-group">
+              <label for="quantity"><i class="fas fa-sort-numeric-up"></i> Qty</label>
+              <input type="number" id="quantity" placeholder="0" min="1" required/>
+            </div>
+            <div class="form-group">
+              <label for="price"><i class="fas fa-tag"></i> MRP (₹)</label>
+              <input type="number" id="price" placeholder="Auto" step="0.01" required/>
+            </div>
+            <div class="form-group">
+              <label for="discount"><i class="fas fa-percent"></i> Discount</label>
+              <input type="number" id="discount" placeholder="0" min="0" max="100"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label><i class="fas fa-calculator"></i> Net Amount (₹)</label>
+            <input type="number" id="totalPrice" placeholder="Calculated automatically" readonly/>
+          </div>
+
+          <button type="submit" class="add-btn">
+            <i class="fas fa-plus-circle"></i> ADD TO BILL
+          </button>
+        </form>
+
+        <!-- Item counter bar -->
+        <div class="item-counter" id="itemCounter" style="display:none;">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="itemCountText">0 items in bill</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ RIGHT: RECEIPT / INVOICE ════ -->
+    <div class="billing-right">
+      <div class="receipt" id="receiptToPrint">
+
+        <!-- Shop Header -->
+        <div class="receipt-shop">
+          <div class="receipt-shop-logo">&#x2695;</div>
+          <div class="receipt-shop-name">MedCare Pharmacy</div>
+          <div class="receipt-shop-tagline">Your Health, Our Priority</div>
+          <div class="receipt-shop-info">
+            <span><i class="fas fa-map-marker-alt"></i> 12, Gandhi Road, Near City Hospital</span>
+            <span><i class="fas fa-phone"></i> +91 98765 43210</span>
+            <span><i class="fas fa-id-card"></i> DL No: MH-12345 &nbsp;|&nbsp; GSTIN: 27AAAA0000A1Z5</span>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="receipt-divider dashed"></div>
+
+        <!-- Bill Info Row -->
+        <div class="receipt-bill-info">
+          <div class="receipt-bill-left">
+            <div class="rbi-row"><span class="rbi-label">Bill No.</span><span class="rbi-value" id="billNumber">—</span></div>
+            <div class="rbi-row"><span class="rbi-label">Date</span><span class="rbi-value" id="receiptDate">—</span></div>
+            <div class="rbi-row"><span class="rbi-label">Time</span><span class="rbi-value" id="receiptTime">—</span></div>
+          </div>
+          <div class="receipt-bill-right">
+            <div class="rbi-row"><span class="rbi-label">Patient</span><span class="rbi-value" id="receiptPatient">—</span></div>
+            <div class="rbi-row"><span class="rbi-label">Phone</span><span class="rbi-value" id="receiptPhone">—</span></div>
+            <div class="rbi-row"><span class="rbi-label">Doctor</span><span class="rbi-value" id="receiptDoctor">—</span></div>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="receipt-divider dashed"></div>
+
+        <!-- Items Table -->
+        <table class="receipt-table" id="productTable">
+          <thead>
+            <tr>
+              <th class="col-sno">#</th>
+              <th class="col-name">Medicine</th>
+              <th class="col-qty">Qty</th>
+              <th class="col-mrp">MRP</th>
+              <th class="col-disc">Disc</th>
+              <th class="col-amt">Amount</th>
+            </tr>
+          </thead>
+          <tbody id="receiptBody">
+            <tr class="empty-row">
+              <td colspan="6">
+                <div class="empty-state">
+                  <i class="fas fa-prescription-bottle-alt"></i>
+                  <span>Add medicines to begin</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Divider -->
+        <div class="receipt-divider dashed"></div>
+
+        <!-- Totals -->
+        <div class="receipt-totals">
+          <div class="total-row">
+            <span>Subtotal</span>
+            <span>₹<span id="subtotalAmt">0.00</span></span>
+          </div>
+          <div class="total-row">
+            <span>Total Discount</span>
+            <span class="discount-val">- ₹<span id="discountAmt">0.00</span></span>
+          </div>
+          <div class="total-row">
+            <span>GST (0%)</span>
+            <span>₹0.00</span>
+          </div>
+          <div class="receipt-divider" style="margin:8px 0;"></div>
+          <div class="total-row grand">
+            <span>GRAND TOTAL</span>
+            <span>₹<span id="totalAmount">0.00</span></span>
+          </div>
+          <div class="total-row" style="font-size:11px;color:var(--muted);margin-top:4px;">
+            <span>Total Qty</span>
+            <span id="totalQty">0</span>
+          </div>
+        </div>
+
+        <!-- Amount in words -->
+        <div class="receipt-divider dashed"></div>
+        <div class="amount-in-words">
+          <span class="aiw-label">Amount in Words:</span>
+          <span id="amountInWords" class="aiw-value">Zero Rupees Only</span>
+        </div>
+
+        <!-- Divider -->
+        <div class="receipt-divider dashed"></div>
+
+        <!-- Footer -->
+        <div class="receipt-footer">
+          <div class="receipt-footer-left">
+            <div class="sig-line"></div>
+            <div class="sig-label">Customer Signature</div>
+          </div>
+          <div class="receipt-footer-right">
+            <div class="sig-line"></div>
+            <div class="sig-label">Pharmacist Signature</div>
+          </div>
+        </div>
+
+        <div class="receipt-thank-you">
+          &#9829; Thank you for your visit! Get well soon.
+        </div>
+        <div class="receipt-policy">
+          Medicines once sold are non-returnable.&nbsp;
+          Keep medicines out of reach of children.
+        </div>
+
+        <!-- PAID stamp (hidden on print) -->
+        <div class="receipt-paid-stamp no-print" id="paidStamp" style="display:none;">SAVED</div>
+      </div>
+
+      <!-- Action Buttons (hidden on print) -->
+      <div class="bill-actions no-print">
+        <button class="print-btn" onclick="printBill()">
+          <i class="fas fa-print"></i> Save &amp; Print
+        </button>
+        <button class="clear-btn" onclick="clearBill()">
+          <i class="fas fa-redo"></i> New Bill
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="footer no-print">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 Medicine Billing &amp; Management System. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/billing.js"></script>
+  <script src="scripts/main.js"></script>
+  <script>
+    // ── Init time on receipt ─────────────────────────────────
+    function updateReceiptHeader() {
+      const now = new Date();
+      document.getElementById('receiptDate').textContent =
+        now.toLocaleDateString('en-IN', {day:'2-digit', month:'short', year:'numeric'});
+      document.getElementById('receiptTime').textContent =
+        now.toLocaleTimeString('en-IN', {hour:'2-digit', minute:'2-digit'});
+    }
+    updateReceiptHeader();
+
+    // ── Live update receipt fields ───────────────────────────
+    document.getElementById('patientName').addEventListener('input', function() {
+      document.getElementById('receiptPatient').textContent = this.value || '—';
+    });
+    document.getElementById('patientPhone').addEventListener('input', function() {
+      document.getElementById('receiptPhone').textContent = this.value || '—';
+    });
+    document.getElementById('doctorName').addEventListener('input', function() {
+      document.getElementById('receiptDoctor').textContent = this.value || '—';
+    });
+
+    // ── Amount in Words ──────────────────────────────────────
+    function numberToWords(num) {
+      const ones = ['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine',
+                    'Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen',
+                    'Seventeen','Eighteen','Nineteen'];
+      const tens = ['','','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'];
+      if (num === 0) return 'Zero';
+      if (num < 20) return ones[num];
+      if (num < 100) return tens[Math.floor(num/10)] + (num%10 ? ' ' + ones[num%10] : '');
+      if (num < 1000) return ones[Math.floor(num/100)] + ' Hundred' + (num%100 ? ' ' + numberToWords(num%100) : '');
+      if (num < 100000) return numberToWords(Math.floor(num/1000)) + ' Thousand' + (num%1000 ? ' ' + numberToWords(num%1000) : '');
+      return numberToWords(Math.floor(num/100000)) + ' Lakh' + (num%100000 ? ' ' + numberToWords(num%100000) : '');
+    }
+    window.updateAmountWords = function(amount) {
+      const rupees = Math.floor(amount);
+      const paise  = Math.round((amount - rupees) * 100);
+      let words = numberToWords(rupees) + ' Rupees';
+      if (paise > 0) words += ' and ' + numberToWords(paise) + ' Paise';
+      words += ' Only';
+      document.getElementById('amountInWords').textContent = words;
+    };
+
+    // ── Remove empty state row when items added ──────────────
+    window.removeEmptyRow = function() {
+      const emptyRow = document.querySelector('.empty-row');
+      if (emptyRow) emptyRow.remove();
+    };
+
+    // ── Item counter update ──────────────────────────────────
+    window.updateItemCounter = function(count) {
+      const bar = document.getElementById('itemCounter');
+      const txt = document.getElementById('itemCountText');
+      bar.style.display = count > 0 ? 'flex' : 'none';
+      txt.textContent = count + ' item' + (count > 1 ? 's' : '') + ' in bill';
+    };
+
+    // ── Clear Bill ───────────────────────────────────────────
+    function clearBill() {
+      if (!confirm('Start a new bill? Current bill will be cleared.')) return;
+      location.reload();
+    }
+
+    // ── Logout ───────────────────────────────────────────────
+    document.getElementById('headerLogout').addEventListener('click', function(e) {
+      e.preventDefault();
+      localStorage.removeItem('mbmsToken');
+      localStorage.removeItem('mbmsUser');
+      window.location.href = 'Login.HTML';
+    });
+  </script>
+</body>
+</html>

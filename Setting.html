@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical Settings</title>
+
+<link rel="stylesheet" href="Setting.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="app">
+
+    <h2>🏥 Medical Settings</h2>
+
+    <!-- Clinic -->
+    <div class="card">
+        <h3>Clinic Info</h3>
+        <div class="grid">
+            <input id="clinicName" placeholder="Clinic Name">
+            <input id="license" placeholder="License Number">
+            <input id="address" placeholder="Address">
+            <input id="contact" placeholder="Contact">
+        </div>
+        <button class="primary" onclick="saveClinic()">Save</button>
+    </div>
+
+    <!-- Users -->
+    <div class="card">
+        <h3>User Management</h3>
+
+        <div class="user-form">
+            <input id="userName" placeholder="User Name">
+            <select id="role">
+                <option>Admin</option>
+                <option>Receptionist</option>
+                <option>Accountant</option>
+            </select>
+            <button class="primary" onclick="addUser()">Add</button>
+        </div>
+
+        <ul id="userList"></ul>
+    </div>
+
+    <!-- Security -->
+    <div class="card">
+        <h3>Security</h3>
+        <input id="newPass" type="password" placeholder="New Password">
+        <button class="danger" onclick="resetPassword()">Reset Password</button>
+    </div>
+
+    <!-- Backup -->
+    <div class="card">
+        <h3>Backup</h3>
+        <button class="success" onclick="backupData()">Backup</button>
+        <button class="warning" onclick="restoreData()">Restore</button>
+    </div>
+
+    <!-- Logs -->
+    <div class="card">
+        <h3>Activity Logs</h3>
+        <ul id="logs"></ul>
+    </div>
+
+</div>
+
+<script src="Setting.js"></script>
+</body>
+</html>

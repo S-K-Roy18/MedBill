@@ -1,0 +1,335 @@
+/* ===============================
+   GLOBAL RESET & VARIABLES
+================================ */
+:root {
+  --primary-color: #4aa3ff;
+  --primary-dark: #0066cc;
+  --secondary-color: #28a745;
+  --bg-light: #f3f9ff;
+  --card-bg: #ffffff;
+  --text-dark: #222;
+  --text-muted: #666;
+  --border-radius: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* ===============================
+   HEADER / NAVBAR
+================================ */
+/* ===============================
+   NAVBAR FIX (DESKTOP FIRST)
+================================ */
+.header {
+  background: #4aa3ff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 30px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu ul {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav-menu a:hover {
+  text-decoration: underline;
+}
+
+/* Profile dropdown */
+.dropdown {
+  position: relative;
+}
+
+.profile-icon {
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background: #fff;
+  min-width: 160px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 10px 14px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.dropdown-content a:hover {
+  background: #f3f9ff;
+}
+
+.dropdown.active .dropdown-content {
+  display: block;
+}
+
+/* Hide hamburger on desktop */
+.hamburger {
+  display: none;
+}
+
+
+/* ===============================
+   HERO SECTION
+================================ */
+.hero-section {
+  background: #f3f9ff;
+  padding: 80px 0 120px;
+}
+
+.hero-content {
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 25px;
+}
+
+.hero-preview {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-preview img {
+  max-width: 900px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+
+/* Buttons same as dashboard */
+.cta-button {
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.free-trial {
+  background: var(--secondary-color);
+  color: #fff;
+}
+
+.free-trial:hover {
+  background: #218838;
+}
+
+.demo-request {
+  background: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.demo-request:hover {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+/* ===============================
+   FEATURE SECTIONS
+================================ */
+.feature-section {
+  padding: 70px 0;
+}
+
+.feature-grid {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.feature-grid.reverse-grid {
+  flex-direction: row-reverse;
+}
+
+.feature-text h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.feature-text p {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+}
+
+.feature-image {
+  background: var(--card-bg);
+  height: 280px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-style: italic;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+.footer {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 40px 0 20px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.footer-links h4 {
+  margin-bottom: 12px;
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links a {
+  color: #eaf4ff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 2;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 15px;
+  font-size: 0.9rem;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 992px) {
+  .feature-grid {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.3rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+}
+
+.cta-button {
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.free-trial {
+  background: #28a745;
+  color: #fff;
+}
+
+.free-trial:hover {
+  background: #218838;
+}
+
+.demo-request {
+  background: transparent;
+  color: #4aa3ff;
+  border: 2px solid #4aa3ff;
+}
+
+.demo-request:hover {
+  background: #4aa3ff;
+  color: #fff;
+}
+
+.feature-section {
+  padding: 100px 0;
+  background: #ffffff;
+}
+
+.feature-grid {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+
+
+

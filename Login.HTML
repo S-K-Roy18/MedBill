@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pharmacist Login</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #eaf0fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      width: 900px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+    }
+
+    .login-box {
+      display: flex;
+      width: 100%;
+    }
+
+    .login-left {
+      flex: 1;
+      padding: 50px;
+    }
+
+    .login-left h2 {
+      color: #1a237e;
+      margin-bottom: 10px;
+    }
+
+    .login-left p {
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    .input-group input:focus {
+      border-color: #1e88e5;
+    }
+
+    .forgot {
+      text-align: right;
+      margin-bottom: 20px;
+    }
+
+    .forgot a {
+      text-decoration: none;
+      font-size: 14px;
+      color: #1e88e5;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #1e88e5;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #1565c0;
+    }
+
+    .login-right {
+      flex: 1;
+      background: linear-gradient(135deg, #90caf9, #42a5f5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-right img {
+      width: 90%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <div class="login-left">
+        <h2>Login</h2>
+        <p>Welcome to Pharmacist Platform</p>
+        <form id="loginForm">
+          <div class="input-group">
+            <label>Username or email</label>
+            <input type="text" id="username" required />
+          </div>
+          <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="password" required />
+          </div>
+          <div class="forgot">
+            <a href="#">Forgot?</a>
+          </div>
+          <button type="submit"><a href="Homepage.html"></a>Submit</button>
+        </form>
+      </div>
+      <div class="login-right">
+        <img src="Images\male-doctor-glasses-pensive-pose-600nw-2557336587.webp" alt="">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'http://localhost:5000/api';
+
+    document.getElementById("loginForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      const submitBtn = this.querySelector("button[type='submit']");
+
+      submitBtn.textContent = "Logging in...";
+      submitBtn.disabled = true;
+
+      try {
+        const res = await fetch(`${API_URL}/auth/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+        });
+
+        const json = await res.json();
+
+        if (json.success) {
+          // Store token and user info for use across pages
+          localStorage.setItem("mbmsToken", json.data.token);
+          localStorage.setItem("mbmsUser", JSON.stringify({
+            username: json.data.username,
+            role: json.data.role,
+          }));
+          alert("Login successful! Welcome, " + json.data.username);
+          window.location.href = "Dashboard.html";
+        } else {
+          alert("Login failed: " + json.message);
+          submitBtn.textContent = "Submit";
+          submitBtn.disabled = false;
+        }
+      } catch (err) {
+        // Fallback: if backend is not running, allow hardcoded login during development
+        console.warn("Backend not reachable, using dev fallback login.");
+        if (username === "admin" && password === "12345") {
+          localStorage.setItem("mbmsToken", "dev-token");
+          alert("Login successful! (Dev mode — backend offline)");
+          window.location.href = "Dashboard.html";
+        } else {
+          alert("Backend offline. Use admin / 12345 for dev access.");
+        }
+        submitBtn.textContent = "Submit";
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

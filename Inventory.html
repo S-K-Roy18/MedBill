@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory Dashboard | MBMS</title>
+  <link rel="stylesheet" href="Inventory.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="scripts/theme.js"></script>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <img height="50px" src="Images\ChatGPT Image Nov 13, 2025, 10_12_37 PM.png" alt="MBMS Logo" />
+      <h2>MBMS</h2>
+    </div>
+    <nav>
+      <a href="Dashboard.html">Dashbaord</a>
+      <!-- <a href="Inventory.html">Inventory</a> -->
+      <a href="Billing.html" class="active">Billing</a>
+      <a href="Saleshistory.html">Sales</a>
+    </nav>
+    <div class="profile">
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
+        <i class="theme-icon fas fa-moon"></i>
+      </button>
+      <div class="profile-icon">K</div>
+    </div>
+  </header>
+
+  <!-- INVENTORY DASHBOARD -->
+  <section class="inventory">
+    <div class="header-line">
+      <h2>INVENTORY DASHBOARD</h2>
+      <button id="addNewBtn">+ Add New Item</button>
+    </div>
+
+    <!-- ADD ITEM FORM POPUP -->
+    <div class="popup" id="popupForm">
+      <div class="popup-content">
+        <h3>Add Inventory Item</h3>
+        <form id="inventoryForm">
+         <label>Product Name</label>
+         <input type="text" id="invName" list="productSuggestions" required />
+         <datalist id="productSuggestions">
+         </datalist>
+          <label>SKU NO.</label>
+          <input type="text" id="invCategory" required />
+
+          <label>Quantity</label>
+          <input type="number" id="invQty" required />
+
+          <!-- <label>Purchase Price (₹)</label>
+          <input type="number" id="invPurchase" required /> -->
+
+          <label>MRP (₹)</label>
+          <input type="number" id="invSell" required />
+
+          <div class="popup-buttons">
+            <button type="submit" class="btn-save">Save</button>
+            <button type="button" class="btn-close" id="closePopup">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- TABLE -->
+    <table class="inv-table">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>SKU</th>
+          <th>Quantity</th>
+          <!-- <th>Purchase Price</th> -->
+          <th>MRP</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="invTableBody"></tbody>
+    </table>
+  </section>
+
+  <footer>
+    <p>©2025 MBMS. All Rights Reserved.</p>
+  </footer>
+
+  <script src="scripts/Inventory.js"></script>
+</body>
+</html>
