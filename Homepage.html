@@ -12,32 +12,18 @@
     <header class="header">
     <div class="container navbar-content">
         <div class="logo">
-            <img src="Images\ChatGPT Image Nov 13, 2025, 10_12_37 PM.png" alt="MedBill Pro Logo" style="height: 30px;">
+            <img src="Images/logo.png" alt="MedBill Pro Logo" style="height: 30px;">
             <span>Medicine Billing & Management System</span>
         </div>
         <nav class="nav-menu" id="navMenu">
-            <ul>
-                <li><a href="dashboard.html">Inventory</a></li>
-                <li><a href="Billing.html">Billing</a></li>
-                <li><a href="Saleshistory.html">History</a></li>
-                <li> <a href="Login.HTML">Login</a></li>
-                <!--<li><a href="Saleshistory.html">History</a></li>-->
-                <li class="dropdown">
-                    <a href="#" class="profile-icon" id="profileDropdownToggle">
-                        <i class="fas fa-user-circle"></i>
-                    </a>
-                    <div class="dropdown-content">
-                        <a href="#signup" class="signup-link">Sign Up</a> 
-                        <a href="#login">Login</a>
-                        <a href="#settings">Settings</a>
-                        <a href="#logout">Logout</a>
-                    </div>
-                </li>
-            </ul>
+            <!-- Navbar links removed for a cleaner look -->
         </nav>
-        <button class="hamburger" id="hamburger">
-            <i class="fas fa-bars"></i>
-        </button>
+        <div class="nav-actions">
+            <a href="Login.HTML" class="btn-login-nav">Login</a>
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
     </div>
 </header>
     <main>
@@ -51,13 +37,13 @@
     </h1>
 
     <div class="hero-actions">
-      <button class="cta-button free-trial"><a href="dashboard.html">Start your free trial</a></button>
-      <!--<button class="cta-button demo-request">Request Demo</button> -->
+      <a href="dashboard.html" class="cta-button free-trial">Start your free trial</a>
+      <a href="Login.HTML" class="cta-button login-hero">Login Now</a>
     </div>
 
     <!-- HERO PREVIEW IMAGE -->
     <div class="hero-preview">
-      <img src="Images\Untitled designbilling.png" alt="MBMS Dashboard Preview">
+      <img src="Images/Billing.png" alt="MBMS Dashboard Preview">
     </div>
   </div>
 </section>
@@ -71,7 +57,7 @@
                     <p>**Key Features:** Online Payments, Payment Reminders, Secure Links.</p>
                 </div>
                   <div class="feature-image">
-                    <img src="Images\woman-doing-payment-using-qr-code-via-mobile-illustration-download-in-svg-png-gif-file-formats--transaction-digital-pack-e-commerce-shopping-illustrations-10099766.webp" alt="Screenshot of MedBill Pro payment handling interface">
+                    <img src="Images/payment.webp" alt="Screenshot of MedBill Pro payment handling interface">
                 </div>
             </div>
         </section>
@@ -84,12 +70,12 @@
                     <p>**Key Features:** Batch/Expiry Tracking, Stock Alerts, Customer Accounts.</p>
                 </div>
                 <div class="feature-image">
-                    <img src="Images\Untitled designinvent.png" alt="Screenshot of MedBill Pro payment handling interface">
+                    <img src="Images/Inventory.png" alt="Screenshot of MedBill Pro payment handling interface">
                 </div>
             </div>
         </section>
 
-        <section class="feature-section light-bg">
+        <section class="feature-section light-bg" id="analytics">
             <div class="container feature-grid">
                 <div class="feature-text">
                     <h2>Powerful Business Insights</h2>
@@ -97,10 +83,11 @@
                     <p>**Key Features:** Sales Reports, Revenue Analytics, Drug Movement Analysis.</p>
                 </div>
                 <div class="feature-image">
-                    <img src="Images\Untitled design.png" alt="Screenshot of MedBill Pro payment handling interface">
+                    <img src="Images/medicine.jpg" alt="Medicine business analytics and insights">
                 </div>
             </div>
         </section>
+
         
     </main>
 
@@ -125,12 +112,12 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Medicine Billing And Management System. All Rights Reserved.</p>
-                <div class="social-media">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
+                <p>&copy; 2026 Medicine Billing And Management System. All Rights Reserved. Created by Surya.</p>
+            <div class="social-media">
+                <a href="mailto:suryarahulroy321@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/S-K-Roy18" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/surya-kanta-roy-363866338/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
             </div>
         </div>
     </footer>

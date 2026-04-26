@@ -1,6 +1,6 @@
 # 💊 MedBill – Medicine Billing & Inventory Management System
 
-MedBill is a full-stack web application designed to manage medical store operations efficiently. It allows users to manage inventory, generate bills, track sales history, and handle authentication securely.
+MedBill is a full-stack web application designed to manage medical store operations efficiently. It allows users to manage inventory, generate bills, track medicines availability track sales history, and handle authentication securely.
 
 ---
 

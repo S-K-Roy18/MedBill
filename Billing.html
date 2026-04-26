@@ -40,33 +40,42 @@
 
   <!-- ─── HEADER / NAVBAR ─────────────────────────────────── -->
   <header class="header">
-    <div class="container navbar-content">
-      <div class="logo">
-        <img src="Images\ChatGPT Image Nov 13, 2025, 10_12_37 PM.png" alt="MBMS" style="height:30px;">
-        <span>Medicine Billing &amp; Management System</span>
-      </div>
-      <nav class="nav-menu" id="navMenu">
-        <ul>
-          <li><a href="Dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-          <li><a href="Inventory.html"><i class="fas fa-boxes"></i> Inventory</a></li>
-          <li><a href="Saleshistory.html"><i class="fas fa-history"></i> Sales</a></li>
-          <li class="dropdown">
-            <a href="#" class="profile-icon" id="profileDropdownToggle">
-              <i class="fas fa-user-circle"></i>
-            </a>
-            <div class="dropdown-content">
-              <a href="Login.HTML"><i class="fas fa-sign-in-alt"></i> Login</a>
-              <a href="#" id="headerLogout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-            </div>
-          </li>
-        </ul>
-      </nav>
-      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
+  <div class="container navbar-content">
+
+    <!-- LEFT -->
+    <div class="logo">
+      <img src="Images\logo.png" style="height:30px;">
+      <span>Medicine Billing & Management System</span>
+    </div>
+
+    <!-- CENTER -->
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="Dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="Inventory.html"><i class="fas fa-boxes"></i> Inventory</a></li>
+        <li><a href="Saleshistory.html"><i class="fas fa-history"></i> Sales</a></li>
+      </ul>
+    </nav>
+
+    <!-- RIGHT -->
+    <div class="nav-right">
+      <button class="theme-toggle" onclick="toggleTheme()">
         <i class="theme-icon fas fa-moon"></i>
       </button>
-      <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+
+      <div class="dropdown">
+        <div class="profile-icon" id="profileDropdownToggle">
+          <img src="Images/avatar.png" alt="Avatar">
+        </div>
+        <div class="dropdown-content">
+          <a href="Login.HTML"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <a href="#" id="headerLogout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+      </div>
     </div>
-  </header>
+
+  </div>
+</header>
 
   <!-- ─── MAIN BILLING SECTION ────────────────────────────── -->
   <section class="billing-section">
@@ -149,11 +158,11 @@
         <!-- Shop Header -->
         <div class="receipt-shop">
           <div class="receipt-shop-logo">&#x2695;</div>
-          <div class="receipt-shop-name">MedCare Pharmacy</div>
+          <div class="receipt-shop-name"> Roy's MedCare Pharmacy</div>
           <div class="receipt-shop-tagline">Your Health, Our Priority</div>
           <div class="receipt-shop-info">
-            <span><i class="fas fa-map-marker-alt"></i> 12, Gandhi Road, Near City Hospital</span>
-            <span><i class="fas fa-phone"></i> +91 98765 43210</span>
+            <span><i class="fas fa-map-marker-alt"></i> 18, Gandhi Road, Near City Hospital</span>
+            <span><i class="fas fa-phone"></i> +91 81672 76728</span>
             <span><i class="fas fa-id-card"></i> DL No: MH-12345 &nbsp;|&nbsp; GSTIN: 27AAAA0000A1Z5</span>
           </div>
         </div>
@@ -280,7 +289,7 @@
   <footer class="footer no-print">
     <div class="container">
       <div class="footer-bottom">
-        <p>&copy; 2025 Medicine Billing &amp; Management System. All Rights Reserved.</p>
+        <p>&copy; 2026 Medicine Billing &amp; Management System. All Rights Reserved. Created by Surya.</p>
       </div>
     </div>
   </footer>

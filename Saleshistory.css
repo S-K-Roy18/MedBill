@@ -30,13 +30,22 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); }
 .container { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
 .navbar-content {
   display: flex; justify-content: space-between;
-  align-items: center; padding: 14px 0;
+  align-items: center; padding: 18px 0;
 }
 .logo { display: flex; align-items: center; gap: 10px; color: #fff; font-size: 1rem; font-weight: 700; }
 .nav-menu ul { display: flex; align-items: center; gap: 20px; }
 .nav-menu a { color: rgba(255,255,255,0.75); font-size: 14px; font-weight: 500; transition: color 0.2s; }
 .nav-menu a:hover { color: #fff; }
-.profile-icon { font-size: 22px; color: rgba(255,255,255,0.8); }
+.profile-icon {
+  width: 38px; height: 38px; border-radius: 50%;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.15);
+  transition: transform 0.2s, border-color 0.2s;
+}
+.profile-icon:hover { transform: scale(1.05); border-color: #fff; }
+.profile-icon img { width: 100%; height: 100%; object-fit: cover; }
 .dropdown { position: relative; }
 .dropdown-content {
   display: none; position: absolute; right: 0; top: calc(100% + 8px);
@@ -47,6 +56,31 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); }
 .dropdown-content a:hover { background: rgba(255,255,255,0.08); color: #fff; }
 .dropdown.active .dropdown-content { display: block; }
 .hamburger { display: none; background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; }
+
+
+
+/* LEFT */
+.logo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* CENTER */
+.nav-menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* RIGHT */
+.nav-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+}
 
 /* ─── Main Content ─────────────────────────────────────────── */
 .main-content { padding: 36px 24px 60px; max-width: 1300px; margin: 0 auto; }
@@ -126,7 +160,7 @@ td a:hover { text-decoration: underline; }
   display: flex; justify-content: space-between; align-items: center;
   padding-top: 16px; font-size: 13px; color: rgba(255,255,255,0.35);
 }
-.social-media a { color: rgba(255,255,255,0.35); margin-left: 14px; font-size: 16px; }
+.social-media a { color: rgba(255,255,255,0.35); margin-left: 24px; font-size: 18px; }
 .social-media a:hover { color: var(--accent); }
 
 /* ─── Responsive ───────────────────────────────────────────── */

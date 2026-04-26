@@ -12,20 +12,28 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo">
-      <img height="50px" src="Images\ChatGPT Image Nov 13, 2025, 10_12_37 PM.png" alt="MBMS Logo" />
+      <img height="40px" src="Images\logo.png" alt="MBMS Logo" />
       <h2>MBMS</h2>
     </div>
     <nav>
-      <a href="Dashboard.html">Dashbaord</a>
-      <!-- <a href="Inventory.html">Inventory</a> -->
-      <a href="Billing.html" class="active">Billing</a>
+      <a href="Dashboard.html">Dashboard</a>
+      <a href="Billing.html">Billing</a>
       <a href="Saleshistory.html">Sales</a>
     </nav>
-    <div class="profile">
+    <div class="nav-right">
       <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
         <i class="theme-icon fas fa-moon"></i>
       </button>
-      <div class="profile-icon">K</div>
+
+      <div class="dropdown">
+        <div class="profile-icon" id="profileDropdownToggle">
+          <img src="Images/avatar.png" alt="Avatar">
+        </div>
+        <div class="dropdown-content">
+          <a href="Login.HTML">Login</a>
+          <a href="#" id="logoutLink">Logout</a>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -82,9 +90,27 @@
   </section>
 
   <footer>
-    <p>©2025 MBMS. All Rights Reserved.</p>
+    <p>©2026 MBMS. All Rights Reserved. Created by Surya.</p>
   </footer>
 
   <script src="scripts/Inventory.js"></script>
+  <script>
+    // Profile Dropdown Toggle
+    document.getElementById('profileDropdownToggle').addEventListener('click', function(e) {
+      e.preventDefault(); e.stopPropagation();
+      this.closest('.dropdown').classList.toggle('active');
+    });
+    window.addEventListener('click', function() {
+      document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+    });
+
+    // Logout Logic
+    document.getElementById('logoutLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      localStorage.removeItem('mbmsToken');
+      localStorage.removeItem('mbmsUser');
+      window.location.href = 'Login.HTML';
+    });
+  </script>
 </body>
 </html>

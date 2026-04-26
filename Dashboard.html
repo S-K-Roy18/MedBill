@@ -14,9 +14,9 @@
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<div class="logo">
-				<i class='bx bx-plus-medical' style="font-size:26px; color:#4f8ef7;"></i>
-				<span>MBMS</span>
-			</div>
+    <img src="Images/logo.png" alt="MBMS Logo" class="logo-img">
+    <span>MBMS</span>
+</div>
 		</a>
 		<ul class="side-menu top">
 			<li class="active">
@@ -70,20 +70,35 @@
 	<section id="content">
 		<!-- NAVBAR -->
 		<nav>
-			<i class='bx bx-menu'></i>
-			<span class="nav-link" id="navGreeting">Dashboard</span>
-			<form action="#" style="flex:1; max-width:360px;">
-				<div class="form-input">
-					<input type="search" placeholder="Search medicines, bills...">
-					<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-				</div>
-			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="profile">
-				<div class="avatar-circle" id="avatarCircle">A</div>
+	<i class='bx bx-menu'></i>
+
+	<span class="nav-link" id="navGreeting">Dashboard</span>
+
+	<form action="#">
+		<div class="form-input">
+			<input type="search" placeholder="Search medicines, bills...">
+			<button type="submit" class="search-btn">
+				<i class='bx bx-search'></i>
+			</button>
+		</div>
+	</form>
+
+	<!-- RIGHT SIDE WRAPPER -->
+	<div class="nav-right">
+		<input type="checkbox" id="switch-mode" hidden>
+		<label for="switch-mode" class="switch-mode"></label>
+
+		<div class="dropdown">
+			<a href="#" class="profile" id="profileDropdown">
+				<img src="Images/avatar.png" alt="Avatar" class="avatar-img">
 			</a>
-		</nav>
+			<div class="dropdown-content">
+				<a href="Login.HTML"><i class='bx bx-log-in'></i> Login</a>
+				<a href="#" id="logoutLink"><i class='bx bx-log-out'></i> Logout</a>
+			</div>
+		</div>
+	</div>
+</nav>
 
 		<!-- MAIN -->
 		<main>
@@ -189,7 +204,6 @@
 		// Show username initial in avatar
 		const user = JSON.parse(localStorage.getItem('mbmsUser') || '{}');
 		if (user.username) {
-			document.getElementById('avatarCircle').textContent = user.username[0].toUpperCase();
 			document.getElementById('navGreeting').textContent = 'Welcome, ' + user.username;
 		}
 
@@ -270,6 +284,23 @@
 					'<tr><td colspan="5" class="loading-cell" style="color:red">Backend offline. Run npm run dev in backend/</td></tr>';
 			}
 		}
+
+		// Profile Dropdown Toggle
+		document.getElementById('profileDropdown').addEventListener('click', function(e) {
+			e.preventDefault(); e.stopPropagation();
+			this.closest('.dropdown').classList.toggle('active');
+		});
+		window.addEventListener('click', function() {
+			document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+		});
+
+		// Logout Logic
+		document.getElementById('logoutLink').addEventListener('click', function(e) {
+			e.preventDefault();
+			localStorage.removeItem('mbmsToken');
+			localStorage.removeItem('mbmsUser');
+			window.location.href = 'Login.HTML';
+		});
 
 		loadDashboard();
 	</script>

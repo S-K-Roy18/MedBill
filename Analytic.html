@@ -14,31 +14,38 @@
   <!-- ── HEADER ─────────────────────────────────────────────── -->
   <header class="header">
     <div class="container navbar-content">
+      <!-- LEFT -->
       <div class="logo">
-        <i class="fas fa-plus-square" style="color:#4f8ef7;font-size:22px;"></i>
-        <span>Medicine Billing &amp; Management System</span>
+        <img src="Images\logo.png" style="height:30px;">
+        <span>Medicine Billing & Management System</span>
       </div>
-      <nav class="nav-menu" id="navMenu">
+
+      <!-- CENTER -->
+      <nav class="nav-menu">
         <ul>
           <li><a href="Dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
           <li><a href="Inventory.html"><i class="fas fa-boxes"></i> Inventory</a></li>
           <li><a href="Billing.html"><i class="fas fa-receipt"></i> Billing</a></li>
           <li><a href="Saleshistory.html"><i class="fas fa-history"></i> Sales</a></li>
-          <li class="dropdown">
-            <a href="#" class="profile-icon" id="profileDropdownToggle">
-              <i class="fas fa-user-circle"></i>
-            </a>
-            <div class="dropdown-content">
-              <a href="Login.HTML"><i class="fas fa-sign-in-alt"></i> Login</a>
-              <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
-            </div>
-          </li>
         </ul>
       </nav>
-      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
-        <i class="theme-icon fas fa-moon"></i>
-      </button>
-      <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+
+      <!-- RIGHT -->
+      <div class="nav-right">
+        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
+          <i class="theme-icon fas fa-moon"></i>
+        </button>
+
+        <div class="dropdown">
+          <a href="#" class="profile-icon" id="profileDropdownToggle">
+            <img src="Images/avatar.png" alt="Avatar">
+          </a>
+          <div class="dropdown-content">
+            <a href="Login.HTML"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -168,7 +175,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom">
-        <p>&copy; 2025 Medicine Billing &amp; Management System. All Rights Reserved.</p>
+        <p>&copy; 2026 Medicine Billing &amp; Management System. All Rights Reserved. Created by Surya.</p>
       </div>
     </div>
   </footer>
@@ -183,11 +190,6 @@
       localStorage.removeItem('mbmsToken');
       localStorage.removeItem('mbmsUser');
       window.location.href = 'Login.HTML';
-    });
-
-    // Hamburger
-    document.getElementById('hamburger').addEventListener('click', function() {
-      document.getElementById('navMenu').classList.toggle('active');
     });
 
     // Profile dropdown
