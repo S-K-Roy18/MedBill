@@ -1,7 +1,7 @@
 // scripts/Inventory.js
 // Updated to use the backend REST API instead of in-memory array
 
-const API_URL = '/api';
+const API_URL = 'https://medbill-9eni.onrender.com/api';
 
 // ─── DOM Elements ─────────────────────────────────────────────────────────────
 const addNewBtn = document.getElementById('addNewBtn');

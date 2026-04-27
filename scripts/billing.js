@@ -1,7 +1,7 @@
 // scripts/billing.js
 // Powers the pharmacy billing form + receipt
 
-const API_URL = '/api';
+const API_URL = 'https://medbill-9eni.onrender.com/api';
 
 // ── DOM refs ────────────────────────────────────────────────
 const productNameInput  = document.getElementById('productName');
