@@ -44,7 +44,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ─── Serve Frontend Static Files ──────────────────────────────────────────────
-// Opens your HTML pages at http://localhost:5000/Dashboard.html etc.
+// Opens your HTML pages at https://medbill-9eni.onrender.com/Dashboard.html etc.
 // This removes all CORS issues since frontend and API share the same origin.
 app.use(express.static(path.join(__dirname, '..')));
 
@@ -55,7 +55,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
 // ─── Health Check ─────────────────────────────────────────────────────────────
-// Visit http://localhost:5000/api/health to verify the server is running
+// Visit https://medbill-9eni.onrender.com/api/health to verify the server is running
 app.get('/api/health', (req, res) => {
   res.status(200).json({ success: true, message: '🚀 MBMS API is running!', timestamp: new Date() });
 });
