@@ -102,4 +102,30 @@ const getMe = async (req, res) => {
   }
 };
 
-module.exports = { register, login, getMe };
+// ─── POST /api/auth/seed ─────────────────────────────────────────────────────
+// Creates a default admin user if no users exist (for first-time setup)
+const seed = async (req, res) => {
+  try {
+    const userCount = await User.countDocuments();
+    if (userCount > 0) {
+      return res.status(400).json({ success: false, message: 'Database already has users' });
+    }
+
+    const admin = await User.create({
+      username: 'admin',
+      email: 'admin@mbms.com',
+      password: 'Admin@123',
+      role: 'admin',
+    });
+
+    res.status(201).json({
+      success: true,
+      message: 'Default admin user created successfully',
+      credentials: { username: 'admin', password: 'Admin@123' },
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Seeding failed', error: error.message });
+  }
+};
+
+module.exports = { register, login, getMe, seed };

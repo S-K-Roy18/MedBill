@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const { body } = require('express-validator');
-const { register, login, getMe } = require('../controllers/authController');
+const { register, login, getMe, seed } = require('../controllers/authController');
 const { protect } = require('../middleware/authMiddleware');
 
 // Validation for registration
@@ -21,6 +21,7 @@ const loginValidation = [
 
 router.post('/register', registerValidation, register);
 router.post('/login', loginValidation, login);
+router.get('/seed', seed);
 router.get('/me', protect, getMe); // protected — needs valid JWT
 
 module.exports = router;
