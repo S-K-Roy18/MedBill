@@ -132,7 +132,7 @@
           <div class="forgot">
             <a href="#">Forgot?</a>
           </div>
-          <button type="submit"><a href="Homepage.html"></a>Submit</button>
+          <button type="submit"><a href="index.html"></a>Submit</button>
         </form>
       </div>
       <div class="login-right">
@@ -142,7 +142,7 @@
   </div>
 
   <script>
-    const API_URL = 'http://localhost:5000/api';
+    const API_URL = '/api';
 
     document.getElementById("loginForm").addEventListener("submit", async function (e) {
       e.preventDefault();
@@ -180,12 +180,12 @@
       } catch (err) {
         // Fallback: if backend is not running, allow hardcoded login during development
         console.warn("Backend not reachable, using dev fallback login.");
-        if (username === "admin" && password === "12345") {
+        if (username === "admin" && password === "Admin@123") {
           localStorage.setItem("mbmsToken", "dev-token");
           alert("Login successful! (Dev mode — backend offline)");
           window.location.href = "Dashboard.html";
         } else {
-          alert("Backend offline. Use admin / 12345 for dev access.");
+          alert("Backend offline. Use admin / Admin@123 for dev access.");
         }
         submitBtn.textContent = "Submit";
         submitBtn.disabled = false;

@@ -1,7 +1,7 @@
 // scripts/Inventory.js
 // Updated to use the backend REST API instead of in-memory array
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = '/api';
 
 // ─── DOM Elements ─────────────────────────────────────────────────────────────
 const addNewBtn = document.getElementById('addNewBtn');

@@ -1,7 +1,7 @@
 // scripts/billing.js
 // Powers the pharmacy billing form + receipt
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = '/api';
 
 // ── DOM refs ────────────────────────────────────────────────
 const productNameInput  = document.getElementById('productName');
