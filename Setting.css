@@ -1,127 +1,213 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Settings Page Specific Styles */
+/* These inherit from Dashboard.css variables */
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 24px;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    min-height: 100vh;
-    padding: 20px;
+.settings-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
 }
 
-/* App Container */
-.app {
-    max-width: 800px;
-    margin: auto;
+.settings-card {
+    background: var(--card-bg);
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
 }
 
-h2 {
-    text-align: center;
-    color: white;
+.settings-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.settings-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-dark);
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* Cards */
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+.settings-card h3 i {
+    color: var(--accent);
+    font-size: 22px;
 }
 
-.card h3 {
-    margin-bottom: 15px;
-    color: #333;
-}
-
-/* Grid */
 .grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
 }
 
-/* Inputs */
-input, select {
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.settings-card input, .settings-card select {
     width: 100%;
-    padding: 10px;
+    padding: 12px 16px;
     border-radius: 8px;
-    border: 1px solid #ccc;
-    transition: 0.3s;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text-dark);
+    font-family: var(--font);
+    outline: none;
+    transition: var(--transition);
 }
 
-input:focus {
-    border-color: #667eea;
-    outline: none;
+.settings-card input:focus, .settings-card select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(79, 142, 247, 0.1);
+}
+
+/* Password Wrapper */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.password-wrapper input {
+    padding-right: 44px; /* Room for the eye icon */
+}
+
+#toggleSettingPassword {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: color 0.3s;
+}
+
+#toggleSettingPassword:hover {
+    color: var(--text-dark);
 }
 
 /* Buttons */
-button {
-    padding: 10px 15px;
+.settings-card button {
+    padding: 12px 24px;
     border-radius: 8px;
     border: none;
     cursor: pointer;
-    margin-top: 10px;
-    color: white;
-    font-weight: 500;
+    font-weight: 600;
+    font-family: var(--font);
+    color: #fff;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
-/* Button Types */
-.primary {
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
+.btn-save, .btn-add {
+    background: var(--accent);
 }
+.btn-save:hover, .btn-add:hover { background: #3b76e0; transform: translateY(-2px); }
 
-.success {
-    background: linear-gradient(135deg, #43e97b, #38f9d7);
+.btn-danger {
+    background: var(--accent-danger);
 }
+.btn-danger:hover { background: #dc2626; transform: translateY(-2px); }
 
-.warning {
-    background: linear-gradient(135deg, #f6d365, #fda085);
+.btn-success {
+    background: var(--accent-3);
 }
+.btn-success:hover { background: #059669; transform: translateY(-2px); }
 
-.danger {
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+.btn-warning {
+    background: var(--accent-4);
+    color: #1a1d2e;
+}
+.btn-warning:hover { background: #d97706; transform: translateY(-2px); }
+
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
 }
 
 /* User Form */
 .user-form {
+    display: grid;
+    grid-template-columns: 2fr 1fr auto;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+/* Lists */
+.setting-list {
     display: flex;
+    flex-direction: column;
     gap: 10px;
 }
 
-/* List */
-ul {
-    list-style: none;
-    margin-top: 10px;
-}
-
-li {
-    background: #f1f5f9;
-    padding: 10px;
+.setting-list li {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 12px 16px;
     border-radius: 8px;
-    margin-top: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: var(--text-dark);
+    font-weight: 500;
 }
 
-/* Buttons inside list */
-li button {
-    margin-left: 5px;
-    padding: 5px 8px;
+.setting-list li button {
+    padding: 6px 12px;
     font-size: 12px;
+    background: var(--card-bg);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    cursor: pointer;
 }
 
-/* Responsive */
-@media(max-width: 600px) {
-    .grid {
+.setting-list li button:hover {
+    color: var(--accent-danger);
+    border-color: var(--accent-danger);
+    background: transparent;
+    transform: none;
+}
+
+.text-muted {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.logs-list {
+    max-height: 250px;
+    overflow-y: auto;
+}
+.logs-list li {
+    font-size: 13px;
+    font-family: monospace;
+}
+
+@media(max-width: 768px) {
+    .user-form {
         grid-template-columns: 1fr;
     }
-
-    .user-form {
+    .action-buttons {
         flex-direction: column;
     }
 }

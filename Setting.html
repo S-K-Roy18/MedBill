@@ -1,71 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Medical Settings</title>
-
-<link rel="stylesheet" href="Setting.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Settings | MBMS</title>
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<link rel="stylesheet" href="Dashboard.css">
+	<link rel="stylesheet" href="Setting.css">
+	<script src="scripts/theme.js"></script>
 </head>
-
 <body>
 
-<div class="app">
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<div class="logo">
+                <img src="Images/logo.png" alt="MBMS Logo" class="logo-img">
+                <span>MBMS</span>
+            </div>
+		</a>
+		<ul class="side-menu top">
+			<li>
+				<a href="Dashboard.html">
+					<i class='bx bxs-dashboard'></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="Inventory.html">
+					<i class='bx bxs-package'></i>
+					<span class="text">Inventory</span>
+				</a>
+			</li>
+			<li>
+				<a href="Billing.html">
+					<i class='bx bxs-receipt'></i>
+					<span class="text">Billing</span>
+				</a>
+			</li>
+			<li>
+				<a href="Saleshistory.html">
+					<i class='bx bxs-bar-chart-alt-2'></i>
+					<span class="text">Sales History</span>
+				</a>
+			</li>
+			<li>
+				<a href="Analytic.html">
+					<i class='bx bxs-doughnut-chart'></i>
+					<span class="text">Analytics</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li class="active">
+				<a href="Setting.html">
+					<i class='bx bxs-cog'></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="Login.HTML" class="logout" id="logoutBtn">
+					<i class='bx bxs-log-out-circle'></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
 
-    <h2>🏥 Medical Settings</h2>
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+            <i class='bx bx-menu'></i>
+            <span class="nav-link" id="navGreeting">Settings</span>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Search settings...">
+                    <button type="submit" class="search-btn">
+                        <i class='bx bx-search'></i>
+                    </button>
+                </div>
+            </form>
+            <div class="nav-right">
+                <input type="checkbox" id="switch-mode" hidden>
+                <label for="switch-mode" class="switch-mode"></label>
+                <div class="dropdown">
+                    <a href="#" class="profile" id="profileDropdown">
+                        <img src="Images/avatar.png" alt="Avatar" class="avatar-img">
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="Login.HTML"><i class='bx bx-log-in'></i> Login</a>
+                        <a href="#" id="logoutLink"><i class='bx bx-log-out'></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
 
-    <!-- Clinic -->
-    <div class="card">
-        <h3>Clinic Info</h3>
-        <div class="grid">
-            <input id="clinicName" placeholder="Clinic Name">
-            <input id="license" placeholder="License Number">
-            <input id="address" placeholder="Address">
-            <input id="contact" placeholder="Contact">
-        </div>
-        <button class="primary" onclick="saveClinic()">Save</button>
-    </div>
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Settings</h1>
+					<ul class="breadcrumb">
+						<li><a href="#">Home</a></li>
+						<li><i class='bx bx-chevron-right'></i></li>
+						<li><a class="active" href="#">Settings</a></li>
+					</ul>
+				</div>
+			</div>
 
-    <!-- Users -->
-    <div class="card">
-        <h3>User Management</h3>
+            <div class="settings-container">
+                <!-- Clinic -->
+                <div class="settings-card">
+                    <h3><i class='bx bxs-clinic'></i> Clinic Info</h3>
+                    <div class="grid">
+                        <div class="input-group">
+                            <label>Clinic Name</label>
+                            <input id="clinicName" placeholder="Roy's MedCare Pharmacy">
+                        </div>
+                        <div class="input-group">
+                            <label>License Number</label>
+                            <input id="license" placeholder="MH-12345">
+                        </div>
+                        <div class="input-group">
+                            <label>Address</label>
+                            <input id="address" placeholder="18, Gandhi Road">
+                        </div>
+                        <div class="input-group">
+                            <label>Contact</label>
+                            <input id="contact" placeholder="+91 81672 76728">
+                        </div>
+                    </div>
+                    <button class="btn-save" onclick="saveClinic()">Save Changes</button>
+                </div>
 
-        <div class="user-form">
-            <input id="userName" placeholder="User Name">
-            <select id="role">
-                <option>Admin</option>
-                <option>Receptionist</option>
-                <option>Accountant</option>
-            </select>
-            <button class="primary" onclick="addUser()">Add</button>
-        </div>
+                <div class="settings-grid-2">
+                    <!-- Users -->
+                    <div class="settings-card">
+                        <h3><i class='bx bxs-group'></i> User Management</h3>
+                        <div class="user-form">
+                            <input id="userName" placeholder="New User Name">
+                            <select id="role">
+                                <option>Admin</option>
+                                <option>Pharmacist</option>
+                            </select>
+                            <button class="btn-add" onclick="addUser()">Add User</button>
+                        </div>
+                        <ul id="userList" class="setting-list"></ul>
+                    </div>
 
-        <ul id="userList"></ul>
-    </div>
+                    <!-- Security -->
+                    <div class="settings-card">
+                        <h3><i class='bx bxs-lock-alt'></i> Security</h3>
+                        <div class="password-wrapper">
+                            <input id="newPass" type="password" placeholder="Enter New Password">
+                            <i class="fas fa-eye" id="toggleSettingPassword"></i>
+                        </div>
+                        <button class="btn-danger" onclick="resetPassword()">Update Password</button>
+                    </div>
+                </div>
 
-    <!-- Security -->
-    <div class="card">
-        <h3>Security</h3>
-        <input id="newPass" type="password" placeholder="New Password">
-        <button class="danger" onclick="resetPassword()">Reset Password</button>
-    </div>
+                <div class="settings-grid-2">
+                    <!-- Backup -->
+                    <div class="settings-card">
+                        <h3><i class='bx bxs-data'></i> Data Backup</h3>
+                        <p class="text-muted">Securely backup your database or restore from a previous backup.</p>
+                        <div class="action-buttons">
+                            <button class="btn-success" onclick="backupData()">Download Backup</button>
+                            <button class="btn-warning" onclick="restoreData()">Restore Data</button>
+                        </div>
+                    </div>
 
-    <!-- Backup -->
-    <div class="card">
-        <h3>Backup</h3>
-        <button class="success" onclick="backupData()">Backup</button>
-        <button class="warning" onclick="restoreData()">Restore</button>
-    </div>
+                    <!-- Logs -->
+                    <div class="settings-card">
+                        <h3><i class='bx bx-list-ul'></i> Activity Logs</h3>
+                        <ul id="logs" class="setting-list logs-list"></ul>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Logs -->
-    <div class="card">
-        <h3>Activity Logs</h3>
-        <ul id="logs"></ul>
-    </div>
+		</main>
+	</section>
 
-</div>
+    <script src="scripts/Dashboard.js"></script>
+	<script src="scripts/Setting.js"></script>
+    <script>
+        // Password Toggle Logic
+        const toggleSettingPassword = document.getElementById('toggleSettingPassword');
+        const newPassInput = document.getElementById('newPass');
 
-<script src="scripts/Setting.js"></script>
+        if (toggleSettingPassword && newPassInput) {
+            toggleSettingPassword.addEventListener('click', function () {
+                const type = newPassInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                newPassInput.setAttribute('type', type);
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+        }
+    </script>
 </body>
 </html>
