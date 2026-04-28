@@ -16,12 +16,17 @@
     <div class="container navbar-content">
       <!-- LEFT -->
       <div class="logo">
-        <img src="Images\logo.png" style="height:30px;">
-        <span>Medicine Billing & Management System</span>
+        <img src="Images/logo.png" style="height:30px;">
+        <span>MBMS</span>
       </div>
 
+      <!-- Hamburger (mobile only) -->
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <i class="fas fa-bars"></i>
+      </button>
+
       <!-- CENTER -->
-      <nav class="nav-menu">
+      <nav class="nav-menu" id="navMenu">
         <ul>
           <li><a href="Dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
           <li><a href="Inventory.html"><i class="fas fa-boxes"></i> Inventory</a></li>
@@ -147,14 +152,16 @@
           <h3><i class="fas fa-clock"></i> Recent Bills</h3>
           <a href="Saleshistory.html" class="see-all">See All →</a>
         </div>
-        <table class="mini-table">
-          <thead>
-            <tr><th>Bill No.</th><th>Customer</th><th>Date</th><th>Amount</th></tr>
-          </thead>
-          <tbody id="recentBillsTable">
-            <tr><td colspan="4" class="loading-cell">Loading...</td></tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="mini-table">
+            <thead>
+              <tr><th>Bill No.</th><th>Customer</th><th>Date</th><th>Amount</th></tr>
+            </thead>
+            <tbody id="recentBillsTable">
+              <tr><td colspan="4" class="loading-cell">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <!-- Low stock -->
@@ -433,8 +440,31 @@
         '<i class="fas fa-exclamation-triangle"></i> ' + msg + '</div>';
     }
 
-    // ── Boot ──────────────────────────────────────────────────
+    // ── Boot ────────────────────────────────────────────────
     loadAnalytics();
+  </script>
+
+  <script>
+    // Hamburger toggle
+    const hbg = document.getElementById('hamburger');
+    const nm  = document.getElementById('navMenu');
+    if (hbg) {
+      hbg.addEventListener('click', function(e) {
+        e.stopPropagation();
+        nm.classList.toggle('active');
+      });
+      document.addEventListener('click', function() { nm.classList.remove('active'); });
+      nm.addEventListener('click', function(e) { e.stopPropagation(); });
+    }
+
+    // Profile dropdown
+    const pdt = document.getElementById('profileDropdownToggle');
+    if (pdt) {
+      pdt.addEventListener('click', function(e) {
+        e.preventDefault(); e.stopPropagation();
+        this.closest('.dropdown').classList.toggle('active');
+      });
+    }
   </script>
 </body>
 </html>

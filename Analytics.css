@@ -227,36 +227,79 @@ header .container { padding: 0 24px; }
 
 /* ── Responsive ──────────────────────────────────────────── */
 
-/* Large Tablet */
+/* Table scroll wrapper for mini-table */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.table-responsive .mini-table { min-width: 380px; }
+
+/* Large Tablet (1024px) — stack charts */
 @media (max-width: 1024px) {
   .charts-grid  { grid-template-columns: 1fr; }
   .chart-box.wide { grid-column: auto; }
   .bottom-grid  { grid-template-columns: 1fr; }
 }
 
-/* Phone */
-@media (max-width: 640px) {
-  .cards { grid-template-columns: 1fr 1fr; }
-  .page-title { flex-direction: column; align-items: flex-start; gap: 4px; }
+/* Phone (768px) — hamburger nav */
+@media (max-width: 768px) {
+  .container { padding: 0 16px 32px; }
+  header .container { padding: 0 16px; }
+
   .hamburger { display: block; }
+
+  /* Hide nav by default, show when .active */
   .nav-menu {
-    display: none; flex-direction: column; width: 100%;
-    background: var(--header-bg); position: absolute;
-    top: 58px; left: 0; padding: 10px 0;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 66px; left: 0; width: 100%;
+    background: var(--header-bg);
+    padding: 10px 0;
     border-top: 1px solid rgba(255,255,255,.08);
+    z-index: 1500;
   }
   .nav-menu.active { display: flex; }
   .nav-menu ul { flex-direction: column; gap: 0; width: 100%; }
-  .nav-menu ul li { width: 100%; text-align: center; padding: 10px; }
+  .nav-menu ul li { width: 100%; }
+  .nav-menu ul li a { display: block; padding: 12px 24px; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,.05); }
+
+  .navbar-content { position: relative; }
+
+  .page-title { flex-direction: column; align-items: flex-start; gap: 6px; padding: 20px 0 16px; }
+  .page-title h1 { font-size: 22px; }
+
+  /* Reduce chart heights on phone */
+  #revenueChart    { height: 180px !important; }
+  #bestSellerChart { height: 200px !important; }
+  #dayChart        { height: 200px !important; }
+
+  .chart-box { padding: 16px 14px; }
+  .chart-header { margin-bottom: 12px; }
+  .chart-header h3 { font-size: 14px; }
+  .chart-header p  { font-size: 11px; }
+
+  .cards { gap: 12px; }
+  .card { padding: 16px 14px; gap: 12px; }
+  .card-icon { width: 44px; height: 44px; font-size: 18px; }
+  .card-value { font-size: 22px; }
 }
 
-/* Small Phone */
-@media (max-width: 420px) {
+/* Small Phone (480px) */
+@media (max-width: 480px) {
+  .cards { grid-template-columns: 1fr 1fr; }
+  .logo span { display: none; } /* hide long text, keep logo img */
+  .page-title h1 { font-size: 19px; }
+}
+
+/* Very Small Phone (380px) */
+@media (max-width: 380px) {
   .cards { grid-template-columns: 1fr; }
-  .page-title h1 { font-size: 20px; }
-  .chart-box { padding: 16px; }
-  .chart-box h3 { font-size: 14px; }
-  .main-content { padding: 12px 12px 40px; }
+  .page-title h1 { font-size: 17px; }
+  #revenueChart    { height: 150px !important; }
+  #bestSellerChart { height: 170px !important; }
+  #dayChart        { height: 170px !important; }
+  .section-box { padding: 14px 12px; }
 }
 
 /* ── Theme Toggle Button ──────────────────────────────────── */
