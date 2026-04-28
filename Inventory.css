@@ -258,30 +258,111 @@ body.dark .stock-badge.warning { background: rgba(245, 158, 11, 0.18); border-co
 body.dark .stock-badge.critical { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.4); }
 
 
+/* ─── Hamburger (mobile only) ──────────────────────────────── */
+.hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.8);
+  font-size: 22px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+.hamburger:hover { background: rgba(255,255,255,0.08); }
+
+/* ─── Table Scroll Wrapper ─────────────────────────────────── */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  margin-top: 8px;
+}
+/* Remove duplicate border/shadow from table itself since wrapper has it */
+.inv-table {
+  box-shadow: none;
+  border: none;
+  min-width: 520px; /* always shows all columns */
+}
+
+/* ─── Popup drag handle (visual cue on mobile) ─────────────── */
+.popup-drag-handle {
+  width: 40px; height: 4px;
+  background: var(--border);
+  border-radius: 4px;
+  margin: 0 auto 16px;
+  display: none; /* shown only on mobile */
+}
+
 /* ─── Responsive ───────────────────────────────────────────── */
 
-/* Tablet */
+/* Tablet (768px) */
 @media (max-width: 768px) {
-  .inventory { padding: 20px 16px; }
-  .popup-content { width: 92vw; max-height: 90vh; overflow-y: auto; }
+  .hamburger { display: block; }
+
+  /* Nav becomes a dropdown */
+  #navMenu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; left: 0; width: 100%;
+    background: var(--header-bg);
+    padding: 12px 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    z-index: 1500;
+  }
+  #navMenu.active { display: flex; }
+  #navMenu a {
+    display: block;
+    padding: 12px 24px;
+    margin: 0;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  #navMenu a:last-child { border-bottom: none; }
+
+  .navbar { position: relative; padding: 14px 20px; }
+
+  .inventory { padding: 20px 16px 48px; }
   .header-line { flex-direction: column; align-items: flex-start; gap: 12px; }
   .header-line h2 { font-size: 20px; }
-  .header-line .right { width: 100%; display: flex; gap: 8px; }
-  .header-line .right button { flex: 1; }
-  .search-bar { flex-direction: column; }
-  .search-bar input { width: 100%; }
+  #addNewBtn { width: 100%; justify-content: center; }
 }
 
-/* Large Phone */
+/* Large Phone (576px) — popup becomes bottom-sheet */
 @media (max-width: 576px) {
-  .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  table { min-width: 600px; }
-  .popup-content { width: 100vw; border-radius: 20px 20px 0 0; position: fixed; bottom: 0; top: auto; left: 0; transform: none; }
-  .inventory { padding: 12px; }
+  .inventory { padding: 14px 12px 40px; }
+
+  /* Bottom-sheet popup */
+  .popup { align-items: flex-end; }
+  .popup-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 24px 24px 0 0 !important;
+    padding: 8px 20px 32px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUpPop 0.3s ease;
+  }
+  @keyframes slideUpPop {
+    from { transform: translateY(100%); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  .popup-drag-handle { display: block; }
+
+  .navbar { padding: 12px 14px; }
+  .logo h2 { font-size: 15px; }
+  .logo img { height: 28px; }
 }
 
-/* Small Phone */
+/* Small Phone (380px) */
 @media (max-width: 380px) {
-  .header-line .right { flex-direction: column; }
-  .header-line .right button { width: 100%; }
+  .header-line h2 { font-size: 17px; }
+  .inv-table th, .inv-table td { padding: 10px 12px; font-size: 13px; }
+  .action-btn { padding: 5px 10px; font-size: 11px; }
+  .popup-content h3 { font-size: 16px; }
 }
+

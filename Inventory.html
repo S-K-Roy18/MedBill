@@ -12,14 +12,21 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo">
-      <img height="40px" src="Images\logo.png" alt="MBMS Logo" />
+      <img height="36px" src="Images/logo.png" alt="MBMS Logo" />
       <h2>MBMS</h2>
     </div>
-    <nav>
+
+    <!-- Hamburger (mobile only) -->
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <nav id="navMenu">
       <a href="Dashboard.html">Dashboard</a>
       <a href="Billing.html">Billing</a>
       <a href="Saleshistory.html">Sales</a>
     </nav>
+
     <div class="nav-right">
       <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode">
         <i class="theme-icon fas fa-moon"></i>
@@ -40,13 +47,14 @@
   <!-- INVENTORY DASHBOARD -->
   <section class="inventory">
     <div class="header-line">
-      <h2>INVENTORY DASHBOARD</h2>
+      <h2><i class="fas fa-boxes" style="color:#4f8ef7;margin-right:10px;"></i>INVENTORY</h2>
       <button id="addNewBtn">+ Add New Item</button>
     </div>
 
     <!-- ADD ITEM FORM POPUP -->
     <div class="popup" id="popupForm">
       <div class="popup-content">
+        <div class="popup-drag-handle"></div>
         <h3>Add Inventory Item</h3>
         <form id="inventoryForm">
          <label>Product Name</label>
@@ -59,9 +67,6 @@
           <label>Quantity</label>
           <input type="number" id="invQty" required />
 
-          <!-- <label>Purchase Price (₹)</label>
-          <input type="number" id="invPurchase" required /> -->
-
           <label>MRP (₹)</label>
           <input type="number" id="invSell" required />
 
@@ -73,20 +78,21 @@
       </div>
     </div>
 
-    <!-- TABLE -->
-    <table class="inv-table">
-      <thead>
-        <tr>
-          <th>Product Name</th>
-          <th>SKU</th>
-          <th>Quantity</th>
-          <!-- <th>Purchase Price</th> -->
-          <th>MRP</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody id="invTableBody"></tbody>
-    </table>
+    <!-- TABLE wrapped for scroll -->
+    <div class="table-responsive">
+      <table class="inv-table">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>SKU</th>
+            <th>Quantity</th>
+            <th>MRP</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="invTableBody"></tbody>
+      </table>
+    </div>
   </section>
 
   <footer>
@@ -95,6 +101,20 @@
 
   <script src="scripts/Inventory.js"></script>
   <script>
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    if (hamburger) {
+      hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navMenu.classList.toggle('active');
+      });
+      document.addEventListener('click', function() {
+        navMenu.classList.remove('active');
+      });
+      navMenu.addEventListener('click', function(e) { e.stopPropagation(); });
+    }
+
     // Profile Dropdown Toggle
     document.getElementById('profileDropdownToggle').addEventListener('click', function(e) {
       e.preventDefault(); e.stopPropagation();
