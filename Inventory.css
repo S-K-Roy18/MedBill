@@ -259,8 +259,29 @@ body.dark .stock-badge.critical { background: rgba(239, 68, 68, 0.15); border-co
 
 
 /* ─── Responsive ───────────────────────────────────────────── */
+
+/* Tablet */
 @media (max-width: 768px) {
   .inventory { padding: 20px 16px; }
-  .popup-content { width: 92vw; }
+  .popup-content { width: 92vw; max-height: 90vh; overflow-y: auto; }
+  .header-line { flex-direction: column; align-items: flex-start; gap: 12px; }
   .header-line h2 { font-size: 20px; }
+  .header-line .right { width: 100%; display: flex; gap: 8px; }
+  .header-line .right button { flex: 1; }
+  .search-bar { flex-direction: column; }
+  .search-bar input { width: 100%; }
+}
+
+/* Large Phone */
+@media (max-width: 576px) {
+  .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { min-width: 600px; }
+  .popup-content { width: 100vw; border-radius: 20px 20px 0 0; position: fixed; bottom: 0; top: auto; left: 0; transform: none; }
+  .inventory { padding: 12px; }
+}
+
+/* Small Phone */
+@media (max-width: 380px) {
+  .header-line .right { flex-direction: column; }
+  .header-line .right button { width: 100%; }
 }

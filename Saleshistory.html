@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order History - Medicine Billing &amp; Management System</title>
     <link rel="stylesheet" href="Saleshistory.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -210,6 +211,7 @@
 
         <h2>RECENT ORDERS <span id="billCount" style="font-size:13px;font-weight:500;color:#6b7280;"></span></h2>
 
+        <div class="table-responsive">
         <table>
             <thead>
                 <tr>
@@ -225,6 +227,7 @@
                 <tr><td colspan="6" style="text-align:center;padding:28px;color:#6b7280;">Loading bills...</td></tr>
             </tbody>
         </table>
+        </div>
     </div>
 
     <!-- Bill Detail Modal -->
@@ -237,6 +240,7 @@
             <div class="modal-body">
                 <div class="modal-meta" id="modalMeta"></div>
                 <div class="modal-items-title">Items Purchased</div>
+                <div style="overflow-x:auto;">
                 <table class="modal-table">
                     <thead>
                         <tr>
@@ -249,6 +253,7 @@
                     </thead>
                     <tbody id="modalItemsBody"></tbody>
                 </table>
+                </div>
                 <div class="modal-total">
                     <span id="modalTotalQty"></span>
                     <strong id="modalTotalAmount"></strong>

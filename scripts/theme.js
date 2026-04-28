@@ -1,10 +1,11 @@
 // scripts/theme.js
 // Shared dark/light mode logic for all MBMS pages
-// Include this script in every page's <head> with defer or at end of body
+// Loaded in <head> (no defer) so dark class applies before first paint
 
 (function () {
-  // Apply saved theme IMMEDIATELY to avoid white flash on dark mode pages
-  if (localStorage.getItem('mbmsTheme') === 'dark') {
+  // Check both key variants used across pages to avoid flash
+  const saved = localStorage.getItem('mbms-theme') || localStorage.getItem('mbmsTheme');
+  if (saved === 'dark') {
     document.documentElement.classList.add('dark');
     document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.add('dark');

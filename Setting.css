@@ -203,6 +203,9 @@
     font-family: monospace;
 }
 
+/* ─── Responsive ──────────────────────────────────────────── */
+
+/* Tablet */
 @media(max-width: 768px) {
     .user-form {
         grid-template-columns: 1fr;
@@ -210,4 +213,23 @@
     .action-buttons {
         flex-direction: column;
     }
+    .settings-grid-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Phone */
+@media(max-width: 576px) {
+    .settings-container { gap: 16px; }
+    .settings-card { padding: 18px 16px; }
+    .settings-card h3 { font-size: 16px; }
+    .grid { grid-template-columns: 1fr; }
+    .btn-save, .btn-add, .btn-danger, .btn-success, .btn-warning {
+        width: 100%;
+    }
+}
+
+/* Small Phone */
+@media(max-width: 380px) {
+    .settings-card { padding: 14px 12px; }
 }

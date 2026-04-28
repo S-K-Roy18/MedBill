@@ -135,6 +135,22 @@
       width: 90%;
       border-radius: 10px;
     }
+
+    /* ── Mobile Responsive ── */
+    @media (max-width: 768px) {
+      body { align-items: flex-start; padding: 20px 16px; height: auto; min-height: 100vh; }
+      .login-container { width: 100%; max-width: 480px; margin: auto; }
+      .login-right { display: none; } /* Hide illustration on tablets */
+      .login-left { padding: 36px 28px; }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 0; }
+      .login-container { width: 100%; border-radius: 0; box-shadow: none; min-height: 100vh; }
+      .login-left { padding: 40px 24px; }
+      .login-left h2 { font-size: 24px; }
+      .login-left p { font-size: 14px; }
+    }
   </style>
 </head>
 <body>

@@ -558,6 +558,13 @@ body {
 }
 
 /* ─── RESPONSIVE ──────────────────────────────────────────── */
+
+/* Add transition to sidebar for smooth mobile drawer animation */
+#sidebar {
+	transition: var(--transition), width 0.3s ease, transform 0.3s ease;
+}
+
+/* Tablet (900px): collapse sidebar to icon-only */
 @media screen and (max-width: 900px) {
 	#sidebar { width: var(--sidebar-collapsed); }
 	#sidebar .brand .logo span,
@@ -568,14 +575,46 @@ body {
 	}
 }
 
-@media screen and (max-width: 576px) {
-	#content nav form { display: none; }
+/* Mobile (768px): HIDE sidebar completely, full-width content */
+@media screen and (max-width: 768px) {
+	#sidebar {
+		width: var(--sidebar-width) !important;
+		transform: translateX(-100%);
+		position: fixed;
+		z-index: 2000;
+	}
+	/* When hamburger is clicked, slide sidebar in */
+	#sidebar.show-mobile {
+		transform: translateX(0);
+	}
+	/* Make sidebar text visible inside the drawer */
+	#sidebar .brand .logo span,
+	#sidebar .side-menu li a .text {
+		display: inline !important;
+	}
+	#content {
+		width: 100% !important;
+		left: 0 !important;
+	}
 	#content main { padding: 16px; }
 	#content main .head-title .left h1 { font-size: 22px; }
 	#content main .box-info { grid-template-columns: 1fr 1fr; gap: 12px; }
 	#content main .box-info li { padding: 16px 14px; gap: 12px; }
 	#content main .box-info li .bx { width: 44px; height: 44px; font-size: 20px; }
 	#content main .box-info li .text h3 { font-size: 20px; }
+	#content main .table-data { grid-template-columns: 1fr; }
+	#content main .table-data .order { overflow-x: auto; }
+	#content main .table-data .order table { min-width: 550px; }
+}
+
+/* Small Phone (480px): additional tightening */
+@media screen and (max-width: 480px) {
+	#content main { padding: 12px; }
+	#content main .box-info { grid-template-columns: 1fr; }
+	#content nav { padding: 0 12px; gap: 8px; }
+	#content nav form { display: none; }
+	.head-title { flex-direction: column; align-items: flex-start; gap: 12px; }
+	.btn-download { width: 100%; justify-content: center; }
 }
 
 /* ── Dark Mode (toggled via body.dark class) ──────────────── */

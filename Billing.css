@@ -352,12 +352,16 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); min-hei
 .footer-bottom { text-align:center; font-size:12px; color:rgba(255,255,255,.35); }
 
 /* ── Responsive ──────────────────────────────────────────── */
+
+/* Large Tablet */
 @media (max-width:1024px) {
   .billing-section { flex-direction:column; padding:16px; }
   .billing-right { position:static; width:100%; }
   .billing-left  { width:100%; }
   .customer-info { grid-template-columns:1fr 1fr; }
 }
+
+/* Phone */
 @media (max-width:600px) {
   .customer-info { grid-template-columns:1fr; }
   .row-3 { grid-template-columns:1fr 1fr; }
@@ -371,6 +375,18 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); min-hei
   .nav-menu.active { display:flex; }
   .nav-menu ul { flex-direction:column; gap:0; width:100%; }
   .nav-menu ul li { width:100%; text-align:center; padding:10px; }
+}
+
+/* Small Phone */
+@media (max-width:480px) {
+  .billing-section { padding:10px; }
+  .row-3 { grid-template-columns:1fr; }
+  .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .medicine-table { min-width: 520px; }
+  .billing-right .total-section { padding: 16px; }
+  .billing-right button { width: 100%; }
+  .form-card { padding: 16px; }
+  .form-card h3 { font-size: 15px; }
 }
 
 /* ── Theme Toggle Button ─────────────────────────────────── */
